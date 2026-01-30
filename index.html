@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
+
+    <title>TIC TAC TOE</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- WIN / DRAW MODAL -->
+    <div class="msg-container hide">
+        <div class="win-modal">
+            <h2 id="msg"></h2>
+            <button class="new-btn">New Game</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- TITLE -->
+        <h1 class="title-animate" aria-label="Tic Tac Toe Game">
+            TIC TAC TOE
+        </h1>
+
+        <!-- PLAYER SELECTION + SCOREBOARD -->
+        <section>
+            <h2 id="slc">Who Goes First?</h2>
+
+            <!-- SCOREBOARD -->
+            <div class="scoreboard">
+                <div class="score-row you">
+                    You (X): <span id="you-score">0</span>
+                    <span class="plus-one" id="you-plus">+1</span>
+                </div>
+                <div class="score-row ai">
+                    Computer (O): <span id="ai-score">0</span>
+                    <span class="plus-one" id="ai-plus">+1</span>
+                </div>
+
+                <!-- WARNING -->
+                <p id="warning" class="warning hide">
+                    ⚠️ Please choose who goes first
+                </p>
+            </div>
+
+            <!-- CHOICE BUTTONS -->
+            <div class="choice-buttons">
+                <button id="ch1" class="chbtn">YOU (X)</button>
+                <button id="ch2" class="chbtn">COMPUTER (O)</button>
+            </div>
+        </section>
+
+        <!-- GAME BOARD -->
+        <div class="container">
+            <div class="game">
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+            </div>
+        </div>
+
+        <!-- RESET -->
+        <button class="resetbtn">Reset Game</button>
+    </main>
+
+    <!-- CONFETTI -->
+    <div id="confetti-container"></div>
+
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
