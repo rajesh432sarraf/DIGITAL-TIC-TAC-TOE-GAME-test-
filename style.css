@@ -5,6 +5,23 @@
     box-sizing: border-box;
 }
 
+.main-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.top-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
 /* ================= BODY / BACKGROUND ================= */
 body {
     min-height: 100vh;
@@ -55,7 +72,7 @@ h1,
     text-shadow: 0 0 8px rgba(0, 247, 255, 0.6);
 }
 
-/* ================= CONTAINER ================= */
+/* ================= CONTAINER =================  */
 .container {
     min-height: 70vh;
     display: flex;
@@ -65,21 +82,20 @@ h1,
 
 /* ================= GAME BOARD ================= */
 .game {
-    position: relative;
-    /* required for laser */
-    width: 60vmin;
-    height: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
+    width: min(90vw, 420px);
+    height: min(90vw, 420px);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
 
 /* ================= BOXES ================= */
 .box {
-    width: 18vmin;
-    height: 18vmin;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
     border-radius: 1.3rem;
     border: 1px solid rgba(255, 255, 255, 0.18);
 
@@ -224,9 +240,8 @@ button {
 
 /* ================= SCOREBOARD (TOP RIGHT) ================= */
 .scoreboard {
-    position: fixed;
-    top: 11px;
-    right: 180px;
+    position: relative;
+    margin-top: 10px;
 
     padding: 14px 22px;
     border-radius: 18px;
@@ -354,3 +369,5 @@ button {
         margin-top: 70px;
     }
 }
+
+choice-buttons

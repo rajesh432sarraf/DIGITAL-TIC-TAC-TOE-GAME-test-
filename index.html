@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <title>TIC TAC TOE</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -24,39 +24,39 @@
         </div>
     </div>
 
-    <main>
-        <!-- TITLE -->
-        <h1 class="title-animate" aria-label="Tic Tac Toe Game">
-            TIC TAC TOE
-        </h1>
+    <main class="main-wrapper">
 
-        <!-- PLAYER SELECTION + SCOREBOARD -->
-        <section>
-            <h2 id="slc">Who Goes First?</h2>
+        <!-- TOP AREA -->
+        <header class="top-area">
+            <h1 class="title-animate">TIC TAC TOE</h1>
 
-            <!-- SCOREBOARD -->
-            <div class="scoreboard">
-                <div class="score-row you">
-                    You (X): <span id="you-score">0</span>
-                    <span class="plus-one" id="you-plus">+1</span>
+            <section>
+                <h2 id="slc">Who Goes First?</h2>
+
+                <!-- SCOREBOARD -->
+                <div class="scoreboard">
+                    <div class="score-row you">
+                        You (X): <span id="you-score">0</span>
+                        <span class="plus-one" id="you-plus">+1</span>
+                    </div>
+
+                    <div class="score-row ai">
+                        Computer (O): <span id="ai-score">0</span>
+                        <span class="plus-one" id="ai-plus">+1</span>
+                    </div>
+
+                    <p id="warning" class="warning hide">
+                        ⚠️ Please choose who goes first
+                    </p>
                 </div>
-                <div class="score-row ai">
-                    Computer (O): <span id="ai-score">0</span>
-                    <span class="plus-one" id="ai-plus">+1</span>
+
+                <!-- CHOICE BUTTONS -->
+                <div class="choice-buttons">
+                    <button id="ch1" class="chbtn">YOU (X)</button>
+                    <button id="ch2" class="chbtn">COMPUTER (O)</button>
                 </div>
-
-                <!-- WARNING -->
-                <p id="warning" class="warning hide">
-                    ⚠️ Please choose who goes first
-                </p>
-            </div>
-
-            <!-- CHOICE BUTTONS -->
-            <div class="choice-buttons">
-                <button id="ch1" class="chbtn">YOU (X)</button>
-                <button id="ch2" class="chbtn">COMPUTER (O)</button>
-            </div>
-        </section>
+            </section>
+        </header>
 
         <!-- GAME BOARD -->
         <div class="container">
@@ -75,6 +75,7 @@
 
         <!-- RESET -->
         <button class="resetbtn">Reset Game</button>
+
     </main>
 
     <!-- CONFETTI -->
