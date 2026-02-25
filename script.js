@@ -95,10 +95,17 @@ function aiMove() {
         move = findBestMove(HUMAN);
     }
 
-    // 3️⃣ Random move
+    // 3️⃣ Take the Center (Strategic move)
+    if (!move && !boxes[4].disabled) {
+        move = boxes[4];
+    }
+
+    // 4️⃣ Random move
     if (!move) {
         const available = [...boxes].filter(box => !box.disabled);
-        move = available[Math.floor(Math.random() * available.length)];
+        if (available.length > 0) {
+            move = available[Math.floor(Math.random() * available.length)];
+        }
     }
 
     if (move) {
@@ -193,19 +200,27 @@ resetBtn.addEventListener("click", resetGame);
 
 /* ================= CONFETTI ================= */
 function launchConfetti() {
-    for (let i = 0; i < 80; i++) {
+    // Clear any old confetti first
+    confettiContainer.innerHTML = '';
+    
+    for (let i = 0; i < 100; i++) {
         const confetti = document.createElement("div");
         confetti.classList.add("confetti");
 
+        // Randomize appearance
         confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
+        confetti.style.backgroundColor = ['#00f7ff', '#ff4fd8', '#fff700'][Math.floor(Math.random() * 3)];
+        confetti.style.animationDuration = (Math.random() * 2 + 1) + "s";
+        confetti.style.opacity = Math.random();
 
         confettiContainer.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 3000);
     }
+    
+    // Cleanup to prevent memory leaks
+    setTimeout(() => {
+        confettiContainer.innerHTML = '';
+    }, 3000);
 }
-
 function showPlus(el) {
     el.classList.remove("show"); // reset
     void el.offsetWidth;         // force reflow
