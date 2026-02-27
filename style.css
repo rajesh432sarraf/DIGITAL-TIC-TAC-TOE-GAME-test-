@@ -360,7 +360,7 @@ button:hover {
 
 @media (max-height: 700px), (max-width: 500px) {
     h1.title-animate {
-        font-size: 1.5rem; /* Smaller title */
+        font-size: 1.5rem; 
         margin-bottom: 0;
     }
     
@@ -373,6 +373,6 @@ button:hover {
     }
     
     .game {
-        max-width: 300px; /* Shrink the board on short screens */
+        max-width: 300px;
     }
 }

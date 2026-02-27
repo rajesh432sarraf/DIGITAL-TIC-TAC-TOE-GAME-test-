@@ -17,15 +17,12 @@ let youScore = 0;
 let aiScore = 0;
 
 
-/* ================= CONSTANTS ================= */
 const HUMAN = "X";
 const AI = "O";
 
-/* ================= GAME STATE ================= */
 let currentPlayer = null;
 let count = 0;
 
-/* ================= WIN PATTERNS ================= */
 const winPatterns = [
     [0, 1, 2],
     [3, 4, 5],
