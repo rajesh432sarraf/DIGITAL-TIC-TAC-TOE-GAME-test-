@@ -1,4 +1,4 @@
-/* ================= ELEMENTS ================= */
+/* ================= ELEMENTS ACCESS USING DOM ================= */
 const boxes = document.querySelectorAll(".box");
 const resetBtn = document.querySelector(".resetbtn");
 const msgContainer = document.querySelector(".msg-container");
