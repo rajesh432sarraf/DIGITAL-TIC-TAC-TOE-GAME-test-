@@ -3,8 +3,8 @@ import { io } from 'socket.io-client';
 import { ArrowLeft, RotateCcw, Trophy, Crown } from 'lucide-react';
 import './Game.css';
 
-// Configure this to match the backend server address (e.g. backend container or localhost)
-const SOCKET_URL = 'http://localhost:3001';
+// Configure this to match the backend server address or use empty string to connect to current origin
+const SOCKET_URL = '/';
 
 const Game = ({ user, room: roomId, onLeaveRoom }) => {
   const [socket, setSocket] = useState(null);

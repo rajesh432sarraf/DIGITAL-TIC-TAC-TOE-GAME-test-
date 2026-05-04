@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Smartphone, Github, Facebook, Mail } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Smartphone, Github, Facebook, Mail, Upload, Check } from 'lucide-react';
 import './Login.css';
+
+const PREDEFINED_AVATARS = [
+  'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
+  'https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka',
+  'https://api.dicebear.com/7.x/avataaars/svg?seed=Jack',
+  'https://api.dicebear.com/7.x/avataaars/svg?seed=Mimi',
+  'https://api.dicebear.com/7.x/avataaars/svg?seed=Leo'
+];
 
 const Login = ({ onLogin }) => {
   const [name, setName] = useState('');
   const [showNameInput, setShowNameInput] = useState(false);
   const [selectedProvider, setSelectedProvider] = useState('');
+  
+  const [selectedAvatar, setSelectedAvatar] = useState(PREDEFINED_AVATARS[0]);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
+  const [loginError, setLoginError] = useState('');
 
   // Add floating shapes effect on mount
   useEffect(() => {
@@ -32,21 +45,60 @@ const Login = ({ onLogin }) => {
     setShowNameInput(true);
   };
 
-  const handleMockLogin = (e) => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        setLoginError('Image must be less than 2MB');
+        return;
+      }
+      setIsUploading(true);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedAvatar(reader.result); // Base64 string
+        setIsUploading(false);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleMockLogin = async (e) => {
     e.preventDefault();
     if (name.trim()) {
-      onLogin({
-        id: Math.random().toString(36).substr(2, 9),
-        name: name.trim(),
-        provider: selectedProvider,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`
-      });
+      setLoginError('');
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name.trim(),
+            provider: selectedProvider,
+            avatar: selectedAvatar
+          })
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to connect to backend');
+        }
+        
+        const userData = await response.json();
+        onLogin(userData); // Pass the real user data back to App
+      } catch (err) {
+        console.error('Backend connection failed, using local mock data:', err);
+        // Fallback to local user if backend is completely down
+        onLogin({
+          id: Math.random().toString(36).substr(2, 9),
+          name: name.trim(),
+          provider: selectedProvider,
+          avatar: selectedAvatar,
+          wins: 0, losses: 0, draws: 0
+        });
+      }
     }
   };
 
   return (
     <div className="login-wrapper">
-      <div className="dynamic-background"></div>
       <div className="floating-shapes"></div>
       
       <div className="login-container glass-panel z-10">
@@ -72,8 +124,47 @@ const Login = ({ onLogin }) => {
           </div>
         ) : (
           <form onSubmit={handleMockLogin} className="mock-login-form fade-in">
-            <h2>Welcome via {selectedProvider}</h2>
-            <p>Please enter your display name for the game.</p>
+            <h2>Profile Setup</h2>
+            <p>Choose an avatar and enter your display name.</p>
+            
+            {loginError && <div className="error-text" style={{color: '#ef4444', marginBottom: '10px'}}>{loginError}</div>}
+
+            {/* Avatar Selection */}
+            <div className="avatar-selection">
+              <div className="avatar-grid">
+                {PREDEFINED_AVATARS.map((avatar, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`avatar-option ${selectedAvatar === avatar ? 'selected' : ''}`}
+                    onClick={() => setSelectedAvatar(avatar)}
+                  >
+                    <img src={avatar} alt={`Avatar ${idx}`} />
+                    {selectedAvatar === avatar && <div className="avatar-check"><Check size={16}/></div>}
+                  </div>
+                ))}
+              </div>
+              
+              <div className="custom-upload-container">
+                {selectedAvatar && !PREDEFINED_AVATARS.includes(selectedAvatar) ? (
+                  <div className="custom-preview-wrapper" onClick={() => fileInputRef.current.click()}>
+                    <img src={selectedAvatar} className="custom-preview" alt="Custom" />
+                    <div className="upload-overlay"><Upload size={16}/></div>
+                  </div>
+                ) : (
+                  <button type="button" className="btn-outline upload-btn" onClick={() => fileInputRef.current.click()}>
+                    <Upload size={18} /> {isUploading ? 'Uploading...' : 'Upload Custom Photo'}
+                  </button>
+                )}
+                <input 
+                  type="file" 
+                  ref={fileInputRef} 
+                  onChange={handleFileChange} 
+                  accept="image/*" 
+                  style={{display: 'none'}} 
+                />
+              </div>
+            </div>
+
             <input 
               type="text" 
               placeholder="Enter Display Name"
