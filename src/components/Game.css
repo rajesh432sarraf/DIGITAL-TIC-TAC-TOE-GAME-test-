@@ -1,0 +1,300 @@
+.game-container {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.game-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-info {
+  padding: 0.5rem 1.5rem;
+  font-family: 'Orbitron', monospace;
+  letter-spacing: 2px;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #a7f3d0;
+}
+
+.players-area {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.player-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s;
+  border-width: 2px;
+}
+
+.game-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+}
+
+.player-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.player-symbol {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.x-player.active-turn {
+  border-color: var(--player-x);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  transform: scale(1.05);
+}
+
+.o-player.active-turn {
+  border-color: var(--player-o);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  transform: scale(1.05);
+}
+
+.waiting-card {
+  border: 2px dashed rgba(255,255,255,0.2) !important;
+  opacity: 0.7;
+  justify-content: center;
+}
+
+.status-message {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  height: 24px;
+  color: var(--text-primary);
+}
+
+.winner-msg {
+  color: #fbbf24;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  animation: pulse-win 2s infinite;
+}
+
+.win-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@keyframes pulse-win {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 8px;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1;
+}
+
+.disabled-board {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.cell {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.cell:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cell.x {
+  color: var(--player-x);
+  text-shadow: 0 0 15px var(--player-x);
+}
+
+.cell.o {
+  color: var(--player-o);
+  text-shadow: 0 0 15px var(--player-o);
+}
+
+.winning-cell {
+  background: rgba(251, 191, 36, 0.2) !important;
+  border-color: #fbbf24 !important;
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.5) !important;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.reset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(to right, #fbbf24, #f59e0b) !important;
+  color: #1e293b !important;
+}
+
+/* Confetti System */
+#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.confetto {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  top: -20px;
+  opacity: 0;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  0% { top: -20px; transform: rotate(0deg) rotateX(0deg); opacity: 1; }
+  100% { top: 100vh; transform: rotate(360deg) rotateX(360deg); opacity: 1; }
+}
+
+.loader-container {
+  justify-content: center;
+  height: 50vh;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent-primary);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+.spinner-small {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Extreme Landscape Mobile Shrink */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .game-container {
+    gap: 0.25rem;
+  }
+  .player-card {
+    padding: 0.25rem 0.5rem;
+    gap: 0.5rem;
+  }
+  .game-avatar {
+    width: 30px;
+    height: 30px;
+  }
+  .player-symbol {
+    font-size: 1.2rem;
+  }
+  .player-name {
+    font-size: 0.9rem;
+  }
+  .board {
+    max-width: 220px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .cell {
+    font-size: 2rem;
+    border-radius: 8px;
+  }
+  .status-message {
+    height: 20px;
+    font-size: 0.9rem;
+  }
+  .reset-btn {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.9rem;
+    gap: 4px;
+  }
+}
+
+/* Portrait Mobile Tweak */
+@media screen and (max-width: 480px) {
+  .players-area {
+    gap: 0.5rem;
+  }
+  .player-name {
+    font-size: 0.9rem;
+  }
+  .player-symbol {
+    font-size: 1.2rem;
+  }
+  .game-avatar {
+    width: 35px;
+    height: 35px;
+  }
+}

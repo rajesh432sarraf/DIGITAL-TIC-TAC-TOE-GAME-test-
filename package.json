@@ -1,0 +1,27 @@
+{
+  "name": "tic-tac-toe-multiplayer",
+  "version": "1.0.0",
+  "description": "Multiplayer Tic-Tac-Toe Game",
+  "main": "server/index.js",
+  "scripts": {
+    "dev:frontend": "vite",
+    "dev:backend": "nodemon server/index.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "lucide-react": "^0.577.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14",
+    "vite": "^8.0.0"
+  }
+}

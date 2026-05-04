@@ -1,0 +1,85 @@
+.local-container {
+  max-width: 600px;
+}
+
+.local-info {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.3);
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.local-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 0; /* allows flex shrinking */
+  overflow: hidden;
+}
+
+.flex-grow {
+  flex-grow: 1.5;
+}
+
+.local-details {
+  min-width: 0; /* Prevent text from pushing the flexbox out on small screens */
+}
+
+.local-details .player-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ai-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(236, 72, 153, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ec4899;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+
+.thinking {
+  animation: pulse-avatar 1s infinite alternate;
+  border-color: #ec4899;
+  box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+}
+
+@keyframes pulse-avatar {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+.dots-anim {
+  display: inline-block;
+  animation: typing 1.5s infinite steps(4, end);
+  overflow: hidden;
+  vertical-align: bottom;
+  width: 0px;
+}
+
+@keyframes typing {
+  0% { width: 0px; }
+  100% { width: 24px; } /* Adjust width based on 3 dots */
+}
+
+/* Portrait Mobile Tweak */
+@media screen and (max-width: 480px) {
+  .ai-avatar {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Extreme Landscape Mobile Shrink */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .ai-avatar {
+    width: 30px;
+    height: 30px;
+  }
+}

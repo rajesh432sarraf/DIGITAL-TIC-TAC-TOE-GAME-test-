@@ -1,0 +1,208 @@
+.login-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: -1rem; /* counteract app-container padding if necessary */
+}
+
+/* Dynamic Animated Background */
+.dynamic-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  z-index: 0;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0) 70%);
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.8) rotate(0deg); }
+  100% { transform: translateY(-300px) scale(1.2) rotate(360deg); }
+}
+
+.z-10 {
+  position: relative;
+  z-index: 10;
+}
+
+.login-container {
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.login-header {
+  margin-bottom: 2.5rem;
+}
+
+/* Advanced Text Animation */
+.animated-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6, #60a5fa);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+  text-shadow: 0 0 10px rgba(192, 132, 252, 0.3);
+}
+
+@keyframes shine {
+  to { background-position: 300% center; }
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+  border-right: .15em solid #fbbf24;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #fbbf24; }
+}
+
+.auth-providers {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.auth-btn:hover {
+  transform: translateY(-2px);
+}
+
+.auth-btn.google { background: #ea4335; box-shadow: 0 4px 14px 0 rgba(234, 67, 53, 0.39); }
+.auth-btn.facebook { background: #1877f2; box-shadow: 0 4px 14px 0 rgba(24, 119, 242, 0.39); }
+.auth-btn.github { background: #333; box-shadow: 0 4px 14px 0 rgba(51, 51, 51, 0.39); }
+.auth-btn.phone { background: #10b981; box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39); }
+
+.mock-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.mock-login-form h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+}
+
+.mock-login-form p {
+  color: var(--text-secondary);
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  color: white;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: var(--accent-primary);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  flex: 1;
+}
+
+.glow-btn:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 1.5s forwards; /* Delay so typing finishes */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

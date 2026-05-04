@@ -1,0 +1,237 @@
+/* Updated Dashboard.css */
+.dashboard-container {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid var(--accent-primary);
+  padding: 2px;
+  object-fit: contain;
+}
+
+.user-info h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.badge {
+  font-size: 0.75rem;
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-icon {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.btn-icon:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.5);
+  transform: rotate(10deg);
+}
+
+.split-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .split-view {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mode-section {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.inline-icon {
+  color: var(--accent-secondary);
+}
+
+.offline-icon {
+  color: #fbbf24;
+}
+
+.status-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.text-offline {
+  color: #cbd5e1;
+}
+
+.mb-4 { margin-bottom: 1.5rem; }
+.mt-auto { margin-top: auto; }
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+@media (max-width: 500px) {
+  .action-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inner-card {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.inner-card:hover {
+  background: rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.create-card .card-icon {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  color: var(--accent-primary);
+}
+
+.join-card .card-icon {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.2));
+  color: var(--player-o);
+}
+
+.offline-bg {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
+  color: #fbbf24;
+}
+
+.ai-bg {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(225, 29, 72, 0.2));
+  color: #ec4899;
+}
+
+.inner-card h4 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  min-height: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.join-form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.code-input {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: 600;
+  padding: 0.6rem;
+}
+
+.offline-btn {
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.offline-btn:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.5);
+  color: #fbbf24;
+}
