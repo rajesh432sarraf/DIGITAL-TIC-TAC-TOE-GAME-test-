@@ -87,6 +87,9 @@
   text-align: center;
   height: 24px;
   color: var(--text-primary);
+  max-width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .winner-msg {
@@ -94,6 +97,9 @@
   font-size: 1.5rem;
   text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
   animation: pulse-win 2s infinite;
+  word-wrap: break-word;
+  white-space: normal;
+  line-height: 1.2;
 }
 
 .win-text {
@@ -292,6 +298,14 @@
   }
   .player-symbol {
     font-size: 1.2rem;
+  }
+  .winner-msg {
+    font-size: 1.1rem;
+  }
+  .room-info {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
   }
   .game-avatar {
     width: 35px;
